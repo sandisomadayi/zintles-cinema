@@ -1,6 +1,5 @@
 package booking;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -54,5 +53,12 @@ public class CinemaBookingTest {
         cinemaBooking.bookSeat(4,4);
 
         assertEquals(110, cinemaBooking.totalIncome());
+    }
+    @Test
+    void shouldReturnTrue() {
+        CinemaBooking cinemaBooking = new CinemaBooking();
+        cinemaBooking.clear();
+
+        assertEquals(true, cinemaBooking.book(4,"middle"));
     }
 }
