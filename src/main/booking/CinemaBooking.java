@@ -69,7 +69,7 @@ public class CinemaBooking {
                 }
             }
         }
-        return (frontSeats*FRONT_ROW_COST) + (midSeats*MIDDLE_ROW_COST) + (backSeats*BACK_ROW_COST);
+        return frontSeats*FRONT_ROW_COST + midSeats*MIDDLE_ROW_COST + backSeats*BACK_ROW_COST;
     }
     //shows the number of booked seats
     public int totalBookings() {
@@ -124,11 +124,13 @@ public class CinemaBooking {
                     }
                 }
             }
-        }
+        } //if findSimilarConsecutiveSeats returns true, need to mark the seats as booked, otherwise exit!
+        return findSimilarConsecutiveSeats(tickets);
+        /*
         if (unbookedSeats >= tickets) {
             return true;
         }
-        return false;
+        return false;*/
     }
     public boolean findSimilarConsecutiveSeats(int number) {
         String[] seats = {"x","#","x","x","#","x","#","#","#","#"};
@@ -145,6 +147,8 @@ public class CinemaBooking {
                 seatsCounter = 0;
             }
         }
+        //Need to be able to get to the next row if there are not enough seats
+       
         System.out.println(seatsCounter);
         if (seatsCounter == number) {
             return true;
