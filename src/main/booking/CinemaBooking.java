@@ -17,7 +17,7 @@ public class CinemaBooking {
 
     //books a seat
     public boolean bookSeat(int row, int seat) {
-        if (bookings[row][seat] == "#") {
+        if (bookings[row][seat].equals("#")) {
             bookings[row][seat] = "x";
             return true;
         }
@@ -26,7 +26,7 @@ public class CinemaBooking {
 
     //shows all seats in the cinema
     public void show() {
-        System.out.println("--screen--");
+        System.out.println("----screen----");
         for (int i = 0; i < bookings.length; i++) {
             System.out.print(i+1 + " ");
             for (int j = 0; j < bookings[i].length; j++) {
@@ -47,7 +47,7 @@ public class CinemaBooking {
                 bookings[i][j] = "#";
             }
         }
-        System.out.println("All bookings cleared");
+//        System.out.println("All bookings cleared");
     }
 
     //shows the income from booked seats
@@ -56,14 +56,14 @@ public class CinemaBooking {
 
         for (int i = 0; i < bookings.length; i++) {
             for (int j = 0; j < bookings[i].length; j++) {
-                if (bookings[i][j] == "x") {
-                    if (i >= 0 && i <= 3) {
+                if (bookings[i][j].equals("x")) {
+                    if (i >= 0 && i <= 2) {
                         frontSeats++;
                     }
-                    if (i >= 4 && i <= 6) {
+                    if (i >= 3 && i <= 6) {
                         midSeats++;
                     }
-                    if (i >= 7 && i <= 10) {
+                    if (i >= 7 && i <= 8) {
                         backSeats++;
                     }
                 }
@@ -87,37 +87,73 @@ public class CinemaBooking {
 
     //books seats in specified row
     public boolean book(int tickets, String location) {
-        int unbooked = 0;
-        for (int i = 0; i < bookings.length; i++) {
-            for (int j = 0; j < bookings[i].length; j++) {
-                if (location.equals("front")) {
-                    while (i <= 2) {
-                        if (bookings[i][j].equals("#")) {
-
+        int unbookedSeats = 0;
+        if (location.equalsIgnoreCase("front")) {
+            outerFront:
+            for (int i = 0; i <= 2 ; i++) {
+                for (int j = 0, k = 1; j < bookings[i].length && k < bookings[i].length; j++, k++) {
+                    if (bookings[i][j].equals("#") && bookings[i][k].equals("#")) {
+                        if (unbookedSeats < tickets) {
+                            unbookedSeats++;
+                            bookings[i][j] = "x";
                         }
                     }
                 }
-                if (location.equals("middle")) {}
-                if (location.equals("back")) {}
-                if (bookings[i][j] == "#") {
-                    unbooked++;
+            }
+        }
+        if (location.equalsIgnoreCase("middle")) {
+            for (int i = 3; i <= 5 ; i++) {
+                for (int j = 0, k = 1; j < bookings[i].length && k < bookings[i].length; j++, k++) {
+                    if (bookings[i][j].equals("#") && bookings[i][k].equals("#")) {
+                        if (unbookedSeats < tickets) {
+                            unbookedSeats++;
+                            bookings[i][j] = "x";
+                        }
+                    }
                 }
             }
         }
-        if (tickets <= unbooked) {
+        if (location.equalsIgnoreCase("back")) {
+            for (int i = 6; i <= 8 ; i++) {
+                for (int j = 0, k = 1; j < bookings[i].length && k < bookings[i].length; j++, k++) {
+                    if (bookings[i][j].equals("#") && bookings[i][k].equals("#")) {
+                        if (unbookedSeats < tickets) {
+                            unbookedSeats++;
+                            bookings[i][j] = "x";
+                        }
+                    }
+                }
+            }
+        }
+        if (unbookedSeats >= tickets) {
+            return true;
+        }
+        return false;
+    }
+    public boolean findSimilarConsecutiveSeats(int number) {
+        String[] seats = {"x","#","x","x","#","x","#","#","#","#"};
+        int seatsCounter = 0;
+
+        for (int i = 0; i < seats.length; i++) {
+            if (seats[i].equals("#")) {
+                seatsCounter++;
+                if (seatsCounter == number) {
+                    break;
+                }
+            }
+            else {
+                seatsCounter = 0;
+            }
+        }
+        System.out.println(seatsCounter);
+        if (seatsCounter == number) {
             return true;
         }
         return false;
     }
     public static void main(String[] args) {
         CinemaBooking cinemaBooking = new CinemaBooking();
-        cinemaBooking.clear();
-        cinemaBooking.bookSeat(5,7);
-        cinemaBooking.bookSeat(2,1);
-        System.out.println(cinemaBooking.isSeat(5,3));
-        System.out.println(cinemaBooking.totalBookings());
-        cinemaBooking.show();
-//        System.out.println(cinemaBooking.totalIncome());
+        System.out.println(cinemaBooking.findSimilarConsecutiveSeats(2));
 
     }
 }
