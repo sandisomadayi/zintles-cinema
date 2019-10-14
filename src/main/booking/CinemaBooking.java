@@ -1,24 +1,23 @@
 package booking;
 
+import java.util.Arrays;
+
 public class CinemaBooking {
     //seat row
     //[5]  [5]
-    private String[][] bookings = new String[9][15];
+    private String[][] bookings = new String[9][9];
     private static final int FRONT_ROW_COST = 25, MIDDLE_ROW_COST = 35, BACK_ROW_COST = 31;
     private int totalCost;
 
     //checks if a seat is booked
     public boolean isSeat(int row, int seat) {
-        if (bookings[row][seat].equals("x")) {
-            return true;
-        }
-        return  false;
+        return bookings[row][seat].equals("x");
     }
 
     //books a seat
     public boolean bookSeat(int row, int seat) {
         if (bookings[row][seat].equals("#")) {
-            bookings[row][seat] = "x";
+            bookings[row][seat] = "X";
             return true;
         }
         return false;
@@ -35,7 +34,7 @@ public class CinemaBooking {
             System.out.println();
         }
         for (int i = 0; i < bookings.length; i++) {
-            System.out.print((i+1));
+            System.out.print((i + 1) + " ");
         }
         System.out.println();
     }
@@ -43,9 +42,7 @@ public class CinemaBooking {
     //clears all bookings made
     public void clear() {
         for (int i = 0; i < bookings.length; i++) {
-            for (int j = 0; j < bookings[i].length; j++) {
-                bookings[i][j] = "#";
-            }
+            Arrays.fill(bookings[i], "#");
         }
 //        System.out.println("All bookings cleared");
     }
@@ -56,7 +53,7 @@ public class CinemaBooking {
 
         for (int i = 0; i < bookings.length; i++) {
             for (int j = 0; j < bookings[i].length; j++) {
-                if (bookings[i][j].equals("x")) {
+                if (bookings[i][j].equals("X")) {
                     if (i >= 0 && i <= 2) {
                         frontSeats++;
                     }
@@ -77,7 +74,7 @@ public class CinemaBooking {
 
         for (int i = 0; i < bookings.length; i++) {
             for (int j = 0; j < bookings[i].length; j++) {
-                if (bookings[i][j] == "x") {
+                if (bookings[i][j].equals("X")) {
                     seatsbooked++;
                 }
             }
@@ -87,66 +84,34 @@ public class CinemaBooking {
 
     //books seats in specified row
     public boolean book(int tickets, String location) {
-        int unbookedSeats = 0, lastSeatPosition = 0, rowPosition = 0;
-        if (location.equals("front")) {
-            outside:
-            for (int i = 0; i <= 2; i++) {
-                inside:
-                for (int j = 0; j < bookings[i].length; j++) {
-                    if (bookings[i][j].equals("#")) {
-                        unbookedSeats++;
-                        bookings[i][j] = "X";
-                        if (unbookedSeats == tickets) {
-                            break outside;
-                        }
-
-                    } else {
-                        unbookedSeats = 0;
-                    }
-                }
-            }
+        int unbookedSeats = 0, lastSeatPosition = 0, rowPosition = 0, startRow = 0, endRow = 0;;
+        if (location.equalsIgnoreCase("front")) {
+            startRow = 0; endRow = 2;
         }
-        if (location.equals("middle")) {
-            rowLoop:
-            for (int i = 3; i <= 5; i++) {
-                seatLoop:
-                for (int j = 0; j < bookings[i].length; j++) {
-                    if (bookings[i][j].equals("#")) { //if a seat is unbooked
-                        unbookedSeats++;//increase the number of unbooked seats
-
-                        if (unbookedSeats == tickets) {//if unbooked seats are equal to the number of tickets, stop looking for unbooked seats
-                            lastSeatPosition = j;
-                            rowPosition = i;
-                            break rowLoop;
-                        }
-                        if (j == bookings[i].length -1 && unbookedSeats < tickets) {//if you are in the last seat
-                            unbookedSeats = 0; //reset the number of unbooked seats
-                            continue rowLoop; //go to the next row
-                        }
-                    } else {
-                        unbookedSeats = 0;
-                    }
-                }
-            }
+        if (location.equalsIgnoreCase("middle")) {
+            startRow = 3; endRow = 5;
         }
-        if (location.equals("back")) {
-            outside:
-            for (int i = 6; i <= 8; i++) {
-                inside:
-                for (int j = 0; j < bookings[i].length; j++) {
-                    if (bookings[i][j].equals("#")) {
-                        unbookedSeats++;
-                        bookings[i][j] = "X";
-                        if (unbookedSeats == tickets) {
-                            break outside;
-                        }
-                        if (j == bookings[i].length -1) {
-                            unbookedSeats = 0;
-                            continue outside;
-                        }
-                    } else {
-                        unbookedSeats = 0;
+        if (location.equalsIgnoreCase("back")) {
+            startRow = 6; endRow = 8;
+        }
+
+        rowLoop:
+        for (int i = startRow; i <= endRow; i++) {
+            seatLoop:
+            for (int j = 0; j < bookings[i].length; j++) {
+                if (bookings[i][j].equals("#")) { //if a seat is unbooked
+                    unbookedSeats++;//increase the number of unbooked seats
+                    if (unbookedSeats == tickets) {//if unbooked seats are equal to the number of tickets, stop looking for unbooked seats
+                        lastSeatPosition = j;
+                        rowPosition = i;
+                        break rowLoop;
                     }
+                    if (j == bookings[i].length -1 && unbookedSeats < tickets) {//if you are in the last seat
+                        unbookedSeats = 0; //reset the number of unbooked seats
+                        continue rowLoop; //go to the next row
+                    }
+                } else {
+                    unbookedSeats = 0;
                 }
             }
         }
