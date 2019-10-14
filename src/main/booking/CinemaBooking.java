@@ -42,7 +42,9 @@ public class CinemaBooking {
     //clears all bookings made
     public void clear() {
         for (int i = 0; i < bookings.length; i++) {
-            Arrays.fill(bookings[i], "#");
+            for (int j = 0; j < bookings[i].length; j++) {
+                bookings[i][j] = "#";
+            }
         }
 //        System.out.println("All bookings cleared");
     }
@@ -126,30 +128,7 @@ public class CinemaBooking {
         }
         return false;
     }
-//    public boolean findSimilarConsecutiveSeats(int number) {
-//        String[] seats = {"x","#","x","x","#","x","#","#","#","#"};
-//        int seatsCounter = 0;
-//
-//        for (int i = 0; i < seats.length; i++) {
-//            if (seats[i].equals("#")) {
-//                seatsCounter++;
-//                if (seatsCounter == number) {
-//                    break;
-//                }
-//            }
-//            else {
-//                seatsCounter = 0;
-//            }
-//        }
-//        //Need to be able to get to the next row if there are not enough seats
-//
-//        System.out.println(seatsCounter);
-//        if (seatsCounter == number) {
-//
-//            return true;
-//        }
-//        return false;
-//    }
+    
     public static void main(String[] args) {
         CinemaBooking cinemaBooking = new CinemaBooking();
         cinemaBooking.clear();
