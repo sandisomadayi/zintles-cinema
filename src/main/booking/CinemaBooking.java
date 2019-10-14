@@ -30,7 +30,7 @@ public class CinemaBooking {
         for (int i = 0; i < bookings.length; i++) {
             System.out.print(i+1 + " ");
             for (int j = 0; j < bookings[i].length; j++) {
-                System.out.print(bookings[i][j]);
+                System.out.print(bookings[i][j] + " ");
             }
             System.out.println();
         }
@@ -87,7 +87,7 @@ public class CinemaBooking {
 
     //books seats in specified row
     public boolean book(int tickets, String location) {
-        int unbookedSeats = 0;
+        int unbookedSeats = 0, lastSeatPosition = 0, rowPosition = 0;
         if (location.equals("front")) {
             outside:
             for (int i = 0; i <= 2; i++) {
@@ -109,15 +109,17 @@ public class CinemaBooking {
         if (location.equals("middle")) {
             rowLoop:
             for (int i = 3; i <= 5; i++) {
-                seatLoot:
+                seatLoop:
                 for (int j = 0; j < bookings[i].length; j++) {
                     if (bookings[i][j].equals("#")) { //if a seat is unbooked
                         unbookedSeats++;//increase the number of unbooked seats
-//                        bookings[i][j] = "X";
+
                         if (unbookedSeats == tickets) {//if unbooked seats are equal to the number of tickets, stop looking for unbooked seats
+                            lastSeatPosition = j;
+                            rowPosition = i;
                             break rowLoop;
                         }
-                        if (j == bookings[i].length -1) {//if you are in the last seat
+                        if (j == bookings[i].length -1 && unbookedSeats < tickets) {//if you are in the last seat
                             unbookedSeats = 0; //reset the number of unbooked seats
                             continue rowLoop; //go to the next row
                         }
@@ -126,7 +128,6 @@ public class CinemaBooking {
                     }
                 }
             }
-            
         }
         if (location.equals("back")) {
             outside:
@@ -149,8 +150,16 @@ public class CinemaBooking {
                 }
             }
         }
-//if findSimilarConsecutiveSeats returns true, need to mark the seats as booked, otherwise exit!
-        return unbookedSeats == tickets;
+
+        if (unbookedSeats == tickets) {
+            for (int i = rowPosition; i <= rowPosition; i++) { //row that had required number of seats
+                for (int j = lastSeatPosition; j >= 0; j--) { //start from the last seat
+                    bookings[i][j] = "X";
+                }
+            }
+            return true;
+        }
+        return false;
     }
 //    public boolean findSimilarConsecutiveSeats(int number) {
 //        String[] seats = {"x","#","x","x","#","x","#","#","#","#"};
@@ -182,7 +191,7 @@ public class CinemaBooking {
         cinemaBooking.show();
         System.out.println(cinemaBooking.book(4, "middle"));
         System.out.println(cinemaBooking.book(7, "middle"));
-        System.out.println(cinemaBooking.book(5, "middle"));
+        System.out.println(cinemaBooking.book(9, "middle"));
         cinemaBooking.show();
     }
 }
