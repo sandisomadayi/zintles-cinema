@@ -3,15 +3,16 @@ package booking;
 import java.util.Arrays;
 
 public class CinemaBooking {
-    //seat row
-    //[5]  [5]
+    public CinemaBooking() {
+        this.clear();
+    }
     private String[][] bookings = new String[9][9];
     private static final int FRONT_ROW_COST = 25, MIDDLE_ROW_COST = 35, BACK_ROW_COST = 31;
     private int totalCost;
 
     //checks if a seat is booked
     public boolean isSeat(int row, int seat) {
-        return bookings[row][seat].equals("x");
+        return bookings[row][seat].equals("X");
     }
 
     //books a seat
@@ -51,7 +52,7 @@ public class CinemaBooking {
 
     //shows the income from booked seats
     public int totalIncome() {
-        int frontSeats = 0, midSeats =0, backSeats = 0;
+        int frontSeats = 0, midSeats = 0, backSeats = 0;
 
         for (int i = 0; i < bookings.length; i++) {
             for (int j = 0; j < bookings[i].length; j++) {
@@ -119,7 +120,7 @@ public class CinemaBooking {
         }
 
         if (unbookedSeats == tickets) {
-            for (int i = rowPosition; i <= rowPosition; i++) { //row that had required number of seats
+            for (int i = rowPosition; i <= rowPosition; i++) { //row that has required number of seats
                 for (int j = lastSeatPosition; j >= 0; j--) { //start from the last seat
                     bookings[i][j] = "X";
                 }
@@ -131,11 +132,13 @@ public class CinemaBooking {
     
     public static void main(String[] args) {
         CinemaBooking cinemaBooking = new CinemaBooking();
-        cinemaBooking.clear();
+
         cinemaBooking.show();
+
         System.out.println(cinemaBooking.book(4, "middle"));
         System.out.println(cinemaBooking.book(7, "middle"));
         System.out.println(cinemaBooking.book(9, "middle"));
+
         cinemaBooking.show();
     }
 }

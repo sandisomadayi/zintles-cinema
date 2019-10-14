@@ -7,26 +7,33 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CinemaBookingTest {
 
     @Test
-    void shouldReturnFalse() {
+    void shouldCheckIfASeatIsBookedOrNot() {
         CinemaBooking cinemaBooking = new CinemaBooking();
-        cinemaBooking.clear();
+        cinemaBooking.bookSeat(4,3);
+        cinemaBooking.bookSeat(4,4);
+        cinemaBooking.bookSeat(4,6);
 
         assertEquals(false, cinemaBooking.isSeat(4,5));
     }
 
     @Test
-    void shouldReturnFalse2() {
+    void shouldReturnTrue() {
         CinemaBooking cinemaBooking = new CinemaBooking();
-        cinemaBooking.clear();
-        cinemaBooking.bookSeat(4,4);
 
-        assertEquals(false, cinemaBooking.isSeat(4,4));
+        cinemaBooking.bookSeat(4,3);
+        cinemaBooking.bookSeat(4,4);
+        cinemaBooking.bookSeat(4,6);
+
+        assertEquals(true, cinemaBooking.isSeat(4,4));
     }
 
     @Test
     void shouldBookSeats() {
         CinemaBooking cinemaBooking = new CinemaBooking();
-        cinemaBooking.clear();
+
+        cinemaBooking.bookSeat(4,3);
+        cinemaBooking.bookSeat(4,4);
+        cinemaBooking.bookSeat(4,6);
 
         assertEquals(true, cinemaBooking.bookSeat(5,4));
     }
@@ -34,31 +41,79 @@ public class CinemaBookingTest {
     @Test
     void shouldShowNumberOfBookedSeats() {
         CinemaBooking cinemaBooking = new CinemaBooking();
-        cinemaBooking.clear();
+
         cinemaBooking.bookSeat(1,1);
         cinemaBooking.bookSeat(2,2);
         cinemaBooking.bookSeat(3,3);
-        cinemaBooking.bookSeat(4,4);
+        cinemaBooking.bookSeat(5,4);
+        cinemaBooking.bookSeat(6,4);
+        cinemaBooking.bookSeat(7,4);
+        cinemaBooking.bookSeat(8,4);
 
-        assertEquals(4, cinemaBooking.totalBookings());
+        assertEquals(7, cinemaBooking.totalBookings());
+    }
+
+    @Test
+    void shouldShowZeroBookedSeats() {
+        CinemaBooking cinemaBooking = new CinemaBooking();
+
+        cinemaBooking.bookSeat(1,1);
+        cinemaBooking.bookSeat(2,2);
+        cinemaBooking.bookSeat(3,3);
+        cinemaBooking.bookSeat(5,4);
+        cinemaBooking.bookSeat(6,4);
+        cinemaBooking.bookSeat(7,4);
+        cinemaBooking.bookSeat(8,4);
+        cinemaBooking.clear();
+
+        assertEquals(0, cinemaBooking.totalBookings());
     }
 
     @Test
     void shouldShowCostOfBookedSeats() {
         CinemaBooking cinemaBooking = new CinemaBooking();
-        cinemaBooking.clear();
+
         cinemaBooking.bookSeat(1,1);
         cinemaBooking.bookSeat(2,2);
         cinemaBooking.bookSeat(3,3);
-        cinemaBooking.bookSeat(4,4);
+        cinemaBooking.bookSeat(5,4);
+        cinemaBooking.bookSeat(6,4);
+        cinemaBooking.bookSeat(7,4);
+        cinemaBooking.bookSeat(8,4);
 
-        assertEquals(110, cinemaBooking.totalIncome());
+        assertEquals(217, cinemaBooking.totalIncome());
     }
-    @Test
-    void shouldReturnTrue() {
-        CinemaBooking cinemaBooking = new CinemaBooking();
-        cinemaBooking.clear();
 
-        assertEquals(true, cinemaBooking.book(4,"middle"));
+    @Test
+    void shouldBookTicketAndReturnTrue() {
+        CinemaBooking cinemaBooking = new CinemaBooking();
+
+        cinemaBooking.bookSeat(1, 1);
+        cinemaBooking.bookSeat(2, 2);
+        cinemaBooking.bookSeat(3, 3);
+        cinemaBooking.bookSeat(5, 4);
+        cinemaBooking.bookSeat(6, 4);
+        cinemaBooking.bookSeat(7, 4);
+        cinemaBooking.bookSeat(8, 4);
+        cinemaBooking.book(4, "middle");
+        cinemaBooking.book(4, "middle");
+
+        assertEquals(false, cinemaBooking.book(7, "middle"));
+    }
+
+    @Test
+    void shouldNotBookTicket() {
+        CinemaBooking cinemaBooking = new CinemaBooking();
+
+        cinemaBooking.bookSeat(1,1);
+        cinemaBooking.bookSeat(2,2);
+        cinemaBooking.bookSeat(3,3);
+        cinemaBooking.bookSeat(5,4);
+        cinemaBooking.bookSeat(6,4);
+        cinemaBooking.bookSeat(7,4);
+        cinemaBooking.bookSeat(8,4);
+        cinemaBooking.book(4,"middle");
+
+        assertEquals(true, cinemaBooking.book(7,"middle"));
     }
 }
