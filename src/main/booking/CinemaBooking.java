@@ -6,7 +6,7 @@ public class CinemaBooking {
     public CinemaBooking() {
         this.clear();
     }
-    private String[][] bookings = new String[9][9];
+    private String[][] bookings = new String[9][8];
     private static final int FRONT_ROW_COST = 25, MIDDLE_ROW_COST = 35, BACK_ROW_COST = 31;
     private int totalCost;
 
@@ -26,7 +26,7 @@ public class CinemaBooking {
 
     //shows all seats in the cinema
     public void show() {
-        System.out.println("----screen----");
+        System.out.println("------screen------");
         for (int i = 0; i < bookings.length; i++) {
             System.out.print(i+1 + " ");
             for (int j = 0; j < bookings[i].length; j++) {
@@ -34,7 +34,8 @@ public class CinemaBooking {
             }
             System.out.println();
         }
-        for (int i = 0; i < bookings.length; i++) {
+        System.out.print("  ");
+        for (int i = 0; i < bookings[8].length; i++) {
             System.out.print((i + 1) + " ");
         }
         System.out.println();
@@ -43,11 +44,8 @@ public class CinemaBooking {
     //clears all bookings made
     public void clear() {
         for (int i = 0; i < bookings.length; i++) {
-            for (int j = 0; j < bookings[i].length; j++) {
-                bookings[i][j] = "#";
-            }
+            Arrays.fill(bookings[i], "#");
         }
-//        System.out.println("All bookings cleared");
     }
 
     //shows the income from booked seats
@@ -137,7 +135,10 @@ public class CinemaBooking {
 
         System.out.println(cinemaBooking.book(4, "middle"));
         System.out.println(cinemaBooking.book(7, "middle"));
-        System.out.println(cinemaBooking.book(9, "middle"));
+        System.out.println(cinemaBooking.book(4, "middle"));
+        System.out.println(cinemaBooking.book(4, "middle"));
+        System.out.println(cinemaBooking.book(1, "middle"));
+        System.out.println(cinemaBooking.book(4, "middle"));
 
         cinemaBooking.show();
     }

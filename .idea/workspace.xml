@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d1487e6-3572-4cf3-9298-a506a8befbea" name="Default Changelist" comment="" />
+    <list default="true" id="0d1487e6-3572-4cf3-9298-a506a8befbea" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zintles-cinema/booking/CinemaBooking.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/zintles-cinema/booking/CinemaBooking.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/zintles-cinema/booking/CinemaBookingTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/zintles-cinema/booking/CinemaBookingTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/booking/CinemaBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/booking/CinemaBooking.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +19,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RxfVdlEskZAoLObN4mw5AgR12u" />
   <component name="PropertiesComponent">
@@ -33,17 +41,90 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.CinemaBookingTest">
     <configuration name="CinemaBooking" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="CinemaBooking" />
+      <option name="MAIN_CLASS_NAME" value="booking.CinemaBooking" />
       <module name="zintles-cinema" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="booking.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CinemaBookingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="zintles-cinema" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="booking.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="booking" />
+      <option name="MAIN_CLASS_NAME" value="booking.CinemaBookingTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CinemaBookingTest.shouldBookTicketsAndReturnTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="zintles-cinema" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="booking.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="booking" />
+      <option name="MAIN_CLASS_NAME" value="booking.CinemaBookingTest" />
+      <option name="METHOD_NAME" value="shouldBookTicketsAndReturnTrue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CinemaBookingTest.shouldShowCostOfBookedSeats" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="zintles-cinema" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="booking.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="booking" />
+      <option name="MAIN_CLASS_NAME" value="booking.CinemaBookingTest" />
+      <option name="METHOD_NAME" value="shouldShowCostOfBookedSeats" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CinemaBookingTest.shouldShowZeroBookedSeats" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="zintles-cinema" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="booking.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="booking" />
+      <option name="MAIN_CLASS_NAME" value="booking.CinemaBookingTest" />
+      <option name="METHOD_NAME" value="shouldShowZeroBookedSeats" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CinemaBookingTest" />
         <item itemvalue="Application.CinemaBooking" />
+        <item itemvalue="JUnit.CinemaBookingTest.shouldBookTicketsAndReturnTrue" />
+        <item itemvalue="JUnit.CinemaBookingTest.shouldShowZeroBookedSeats" />
+        <item itemvalue="JUnit.CinemaBookingTest.shouldShowCostOfBookedSeats" />
       </list>
     </recent_temporary>
   </component>
@@ -59,5 +140,18 @@
       <updated>1570613692348</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

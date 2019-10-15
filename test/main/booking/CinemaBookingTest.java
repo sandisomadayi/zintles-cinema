@@ -85,7 +85,7 @@ public class CinemaBookingTest {
     }
 
     @Test
-    void shouldBookTicketAndReturnTrue() {
+    void shouldBookSeatsAndReturnTrue() {
         CinemaBooking cinemaBooking = new CinemaBooking();
 
         cinemaBooking.bookSeat(1, 1);
@@ -102,7 +102,7 @@ public class CinemaBookingTest {
     }
 
     @Test
-    void shouldNotBookTicket() {
+    void shouldNotBookSeats() {
         CinemaBooking cinemaBooking = new CinemaBooking();
 
         cinemaBooking.bookSeat(1,1);
