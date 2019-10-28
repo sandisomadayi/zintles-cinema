@@ -58,10 +58,10 @@ public class CinemaBooking {
                     if (i >= 0 && i <= 2) {
                         frontSeats++;
                     }
-                    if (i >= 3 && i <= 6) {
+                    if (i >= 3 && i <= 5) {
                         midSeats++;
                     }
-                    if (i >= 7 && i <= 8) {
+                    if (i >= 6 && i <= 8) {
                         backSeats++;
                     }
                 }
@@ -83,7 +83,7 @@ public class CinemaBooking {
         return seatsbooked;
     }
 
-    //books seats in specified row
+    //books number of seats in a specified row
     public boolean book(int tickets, String location) {
         int unbookedSeats = 0, lastSeatPosition = 0, rowPosition = 0, startRow = 0, endRow = 0;;
         if (location.equalsIgnoreCase("front")) {
@@ -132,7 +132,7 @@ public class CinemaBooking {
         CinemaBooking cinemaBooking = new CinemaBooking();
 
         cinemaBooking.show();
-
+        System.out.println(cinemaBooking.isSeat(5,4));
         System.out.println(cinemaBooking.book(4, "middle"));
         System.out.println(cinemaBooking.book(7, "middle"));
         System.out.println(cinemaBooking.book(4, "middle"));
