@@ -81,7 +81,7 @@ public class CinemaBookingTest {
         cinemaBooking.bookSeat(7,4);
         cinemaBooking.bookSeat(8,4);
 
-        assertEquals(217, cinemaBooking.totalIncome());
+        assertEquals(213, cinemaBooking.totalIncome());
     }
 
     @Test
